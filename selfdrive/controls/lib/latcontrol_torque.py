@@ -110,7 +110,7 @@ class LatControlTorque(LatControl):
         actual_curvature = interp(CS.vEgo, [2.0, 5.0], [actual_curvature_vm, actual_curvature_llk])
         curvature_deadzone = 0.0
       
-      lookahead = interp(CS.vEgo, [10.0, 30.0], [0.4, 1.2]) # seconds
+      lookahead = interp(CS.vEgo, [10.0, 30.0], [0.6, 1.8]) # seconds
       lookahead_upper_idx = next((i for i, val in enumerate(T_IDXS) if val > lookahead), 16)
       lookahead_curvature_rate = get_lookahead_value(list(lat_plan.curvatureRates)[LAT_PLAN_MIN_IDX:lookahead_upper_idx], desired_curvature_rate)
       lookahead_lateral_jerk = lookahead_curvature_rate * CS.vEgo ** 2
