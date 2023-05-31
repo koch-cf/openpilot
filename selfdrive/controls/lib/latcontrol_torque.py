@@ -68,7 +68,7 @@ class LatControlTorque(LatControl):
       self.history_frame_offsets = [history_check_frames[0] - i for i in history_check_frames]
       self.lat_accel_deque = deque(maxlen=history_check_frames[0])
       self.roll_deque = deque(maxlen=history_check_frames[0])
-      self.nnff_alpha_up_down = [0.1, 0.1] # for increasing/decreasing magnitude of lat accel/jerk
+      self.nnff_alpha_up_down = [0.2, 0.1] # for increasing/decreasing magnitude of lat accel/jerk
       self.nnff_linear_ff_factor_bp = [6.0, 12.0] # m/s; linear ff at/below the low speed
       self.nnff_linear_ff_factor_v = [1.0, 0.0]
       # Scale down desired lateral acceleration under moderate curvature to prevent cutting corners.
@@ -131,7 +131,7 @@ class LatControlTorque(LatControl):
       
       # error downscaling before entering curves
       max_future_lateral_accel = max([abs(i) * CS.vEgo**2 for i in list(lat_plan.curvatures)[LAT_PLAN_MIN_IDX:16]] + [abs(desired_curvature)])
-      error_scale_factor = 1.0 / (1.0 + min(apply_deadzone(max_future_lateral_accel, 0.5) * self.error_downscale, self.error_downscale - 1))
+      error_scale_factor = 1.0 / (1.0 + min(apply_deadzone(lookahead_lateral_jerk, 0.5) * self.error_downscale, self.error_downscale - 1))
       if error_scale_factor < self.error_scale_factor.x:
         self.error_scale_factor.x = error_scale_factor
       else:
