@@ -131,7 +131,7 @@ class LatControlTorque(LatControl):
       
       # error downscaling before entering curves
       max_future_lateral_accel = max([abs(i) * CS.vEgo**2 for i in list(lat_plan.curvatures)[LAT_PLAN_MIN_IDX:16]] + [abs(desired_curvature)])
-      error_scale_factor = 1.0 / (1.0 + min(apply_deadzone(lookahead_lateral_jerk, 0.5) * self.error_downscale, self.error_downscale - 1))
+      error_scale_factor = 1.0 / (1.0 + min(apply_deadzone(abs(lookahead_lateral_jerk), 0.5) * self.error_downscale, self.error_downscale - 1))
       if error_scale_factor < self.error_scale_factor.x:
         self.error_scale_factor.x = error_scale_factor
       else:
