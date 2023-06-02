@@ -507,6 +507,19 @@ static void draw_adjacent_lead_speeds(UIState *s, bool lead_drawn){
       nvgText(s->vg,x,y,s->scene.adjacent_leads_right_str.c_str(),NULL);
       nvgText(s->vg,x,y-60,s->scene.adjacent_lead_right_ttp_str.c_str(),NULL);
     }
+    else{ // still print time to pass along bottom
+      // left lead
+      nvgTextAlign(s->vg, NVG_ALIGN_RIGHT | NVG_ALIGN_BOTTOM);
+      nvgFillColor(s->vg, COLOR_WHITE_ALPHA(200));
+      int x = s->fb_w * 11 / 32;
+      nvgText(s->vg,x,y,s->scene.adjacent_lead_left_ttp_str.c_str(),NULL);
+
+      // right lead
+      nvgTextAlign(s->vg, NVG_ALIGN_LEFT | NVG_ALIGN_BOTTOM);
+      nvgFillColor(s->vg, COLOR_WHITE_ALPHA(200));
+      x = s->fb_w * 21 / 32;
+      nvgText(s->vg,x,y,s->scene.adjacent_lead_right_ttp_str.c_str(),NULL);
+    }
      
     // center leads
     nvgFontSize(s->vg, 90);
