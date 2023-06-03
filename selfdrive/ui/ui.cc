@@ -729,7 +729,7 @@ static void update_state(UIState *s) {
             if (i == 0 && leads_vec[i].getVRel() < 0.0){
               float const v = leads_vec[i].getVRel();
               float const d = leads_vec[i].getDRel();
-              float ttp = d / v;
+              float ttp = -d / v;
               if (ttp > 99.0){
                 scene.adjacent_lead_left_ttp_str = "99s+"; 
               }
@@ -763,7 +763,7 @@ static void update_state(UIState *s) {
             if (i == 0 && leads_vec[i].getVRel() < 0.0){
               float const v = leads_vec[i].getVRel();
               float const d = leads_vec[i].getDRel();
-              float ttp = d / v;
+              float ttp = -d / v;
               if (ttp > 99.0){
                 scene.adjacent_lead_right_ttp_str = "99s+"; 
               }
