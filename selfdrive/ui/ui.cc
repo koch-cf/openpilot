@@ -726,7 +726,7 @@ static void update_state(UIState *s) {
           int cnt = 0;
           scene.adjacent_lead_left_ttp_str = "";
           for (int i = 0; i < leads_vec.size(); ++i){
-            if (i == 0 && leads_vec[i].getVRel() < 0.0){
+            if (i == 0 && leads_vec[i].getVRel() < 0.0 && leads_vec[i].getVLead() > 0.0){
               float const v = leads_vec[i].getVRel();
               float const d = leads_vec[i].getDRel();
               float ttp = -d / v;
@@ -760,7 +760,7 @@ static void update_state(UIState *s) {
           int cnt = 0;
           scene.adjacent_lead_right_ttp_str = "";
           for (int i = 0; i < leads_vec.size(); ++i){
-            if (i == 0 && leads_vec[i].getVRel() < 0.0){
+            if (i == 0 && leads_vec[i].getVRel() < 0.0 && leads_vec[i].getVLead() > 0.0){
               float const v = leads_vec[i].getVRel();
               float const d = leads_vec[i].getDRel();
               float ttp = -d / v;
