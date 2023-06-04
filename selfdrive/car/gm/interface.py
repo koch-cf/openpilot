@@ -321,9 +321,7 @@ class CarInterface(CarInterfaceBase):
       
     if self.CS.autoHoldActivated:
       self.CS.lastAutoHoldTime = t
-    if EventName.accFaulted in events.events and \
-        (t - self.CS.sessionInitTime < 10.0 or
-        t - self.CS.lastAutoHoldTime < 1.0):
+    if EventName.accFaulted in events.events:
       events.events.remove(EventName.accFaulted)
 
     ret.events = events.to_msg()
