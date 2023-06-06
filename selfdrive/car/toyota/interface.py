@@ -36,7 +36,7 @@ class CarInterface(CarInterfaceBase):
       ret.safetyConfigs[0].safetyParam |= Panda.FLAG_TOYOTA_LTA
     else:
       CarInterfaceBase.configure_torque_tune(candidate, ret.lateralTuning)
-      ret.lateralTuning.torque.kf = 1.2
+      ret.lateralTuning.torque.kf = 1.15
 
     ret.steerActuatorDelay = 0.12  # Default delay, Prius has larger delay
     ret.steerLimitTimer = 0.4
